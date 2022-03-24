@@ -1,0 +1,23 @@
+{
+    "name": "addequatte/image-service",
+    "description": "Microservice to work with images",
+    "type": "project",
+    "require": {
+        "php-amqplib/php-amqplib": ">=3.0",
+        "symfony/console": ">=5.3.16",
+        "symfony/dotenv": "6.1.x-dev",
+        "gregwar/image": "dev-master"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Addequatte\\ImageService\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "addequatte"
+        }
+    ],
+    "minimum-stability": "dev"
+}

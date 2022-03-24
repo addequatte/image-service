@@ -1,0 +1,21 @@
+#!/usr/bin/env php
+<?php
+
+namespace Addequatte\ImageService;
+
+use Addequatte\ImageService\Initializer\CommandInitializer;
+use Addequatte\ImageService\Initializer\MainAMQPInitializer;
+use Symfony\Component\Console\Application;
+use Symfony\Component\Dotenv\Dotenv;
+
+define('__BASE_DIR__', __DIR__);
+
+require __DIR__ . '/vendor/autoload.php';
+
+(new Dotenv())->usePutenv()->bootEnv(__DIR__ . '/.env');
+
+$application = new Application();
+
+CommandInitializer::init($application, MainAMQPInitializer::init());
+
+$application->run();

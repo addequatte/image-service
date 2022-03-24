@@ -1,0 +1,31 @@
+version: '3.3'
+
+services:
+  gd_service:
+    build: ./docker/
+    restart: on-failure
+    container_name: gd_service
+    working_dir: /var/www/gd_service
+    environment:
+      PHP_IDE_CONFIG: "serverName=Docker"
+      AMQ_HOST: lemart_rabbitmq
+      AMQ_PORT: 5672
+      AMQ_USER: guest
+      AMQ_PASSWORD: guest
+      AMQ_VHOST: /
+    networks:
+      - lemart_bridge
+    volumes:
+      - ./:/var/www/gd_service
+      - lemart_storage:/var/uploads
+    ports:
+      - 9001:9001
+      - 8001:80
+
+volumes:
+  lemart_storage:
+    external: true
+
+networks:
+  lemart_bridge:
+    external: true
